@@ -1,0 +1,155 @@
+
+
+
+{% extends "meet_app/base.html" %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <a href="/accounts/logout/">Logout ({{ user.get_username }})</a>
+    {% endif %}
+
+    <h2>Konferenz <strong>{{ name }}</strong> beitreten</h2>
+
+    {# Browser #}
+    <p>
+
+        <a href="https://{{ meet_host }}/{{ name }}?jwt={{ personal_token }}" class="btn btn-primary btn-lg"
+           role="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+            </svg>
+
+            Chrome/Chromium/Edge Chromium</a>
+    </p>
+
+
+
+        {# Digitales Klassenzimmer (Apple iOS) #}
+
+    <p>
+
+        <a href="de.hopp-foundation.klassenzimmer://{{ meet_host }}/{{ name }}?jwt={{ personal_token }}"
+           class="btn btn-info btn-lg"
+           role="button">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-app" viewBox="0 0 16 16">
+  <path d="M11 2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h6zM5 1a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4H5z"/>
+</svg>
+
+            Digitales Klassenzimmer (Apple iOS/iPadOS)
+        </a>
+    </p>
+
+
+    {# Digitales Klassenzimmer (Android) #}
+
+
+
+
+    <p>
+
+        <a href="intent://{{ meet_host }}/{{ name }}?jwt={{ personal_token }}#Intent;scheme=de.hopp-foundation.klassenzimmer;package=de.hoppfoundation.klassenzimmer;end"
+           class="btn btn-info btn-lg"
+           role="button">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-app" viewBox="0 0 16 16">
+  <path d="M11 2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h6zM5 1a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4H5z"/>
+</svg>
+
+            Digitales Klassenzimmer (Android)
+        </a>
+    </p>
+
+
+
+    {# Jitsi Meet (Apple iOS) #}
+
+
+    <p>
+
+        <a href="org.jitsi.meet://{{ meet_host }}/{{ name }}?jwt={{ personal_token }}" class="btn btn-info btn-lg"
+           role="button">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-app" viewBox="0 0 16 16">
+  <path d="M11 2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h6zM5 1a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4H5z"/>
+</svg>
+
+            Jitsi Meet (Apple iOS/iPadOS)</a>
+    </p>
+
+
+    {# Jitsi Meet-App (Android) #}
+
+
+    <p>
+
+        <a href="intent://{{ meet_host }}/{{ name }}?jwt={{ personal_token }}#Intent;scheme=org.jitsi.meet;package=org.jitsi.meet;end"
+           class="btn btn-info btn-lg"
+           role="button">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-app" viewBox="0 0 16 16">
+  <path d="M11 2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h6zM5 1a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4H5z"/>
+</svg>
+
+            Jitsi Meet-App (Android)
+        </a>
+    </p>
+
+
+
+
+    {# Copy #}
+
+    <p>
+
+        <button onclick="copyAppLink()" class="btn btn-secondary btn-lg" id="appButton">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+</svg>
+            Link für mobile App kopieren (nicht weitergeben!)
+        </button>
+        <input readonly type="text" value="https://{{ meet_host }}/{{ name }}?jwt={{ personal_token }}" id="appLink">
+
+    </p>
+
+
+
+
+    <p>Zum Einfügen in die App unter <strong>Konferenzname</strong>. Link enthält Ihren Namen und Zugriffsrechte und
+        sollte nicht weitergegeben werden.</p>
+
+
+    {% if not guest %}
+        {% if request.user.is_staff or request.user.is_superuser %}
+
+            <h2>Gäste einladen</h2>
+
+            <p>Hier haben Sie die Möglichkeit Gäste in Ihr Meeting einzuladen. Gäste sind Personen, die sich nicht auf
+                dem Schulserver einloggen können.</p>
+            <p>Gäste haben die Möglichkeit sich selbst einen Namen zu geben.</p>
+            <p>Kopieren Sie diesen Link und geben sie ihn an die Gäste weiter: </p>
+
+
+            <p>
+
+                <button onclick="copyGuestLink()" class="btn btn-lg" id="guestButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-share" viewBox="0 0 16 16">
+                        <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+                    </svg>
+                    Link für Gäste kopieren
+                </button>
+                <input readonly type="text"
+                       value="https://{{ meet_host }}{% url 'meet_app:guest_waiting' name guest_time guest_token %}"
+                       id="guestLink">
+
+            </p>
+
+
+
+
+            Diese Einladung ist gültig bis {{ guest_time_dt }}
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
+
+

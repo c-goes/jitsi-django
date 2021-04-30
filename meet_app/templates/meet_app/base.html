@@ -1,0 +1,47 @@
+{% load static %}
+<html>
+<head>
+    <title>Meet Authenticator</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% block extra_head %}
+    {% endblock %}
+</head>
+<body>
+<header class="page-header">
+    <div class="container">
+        <h1>Jitsi Meet</h1>
+    </div>
+</header>
+<main class="container">
+    <div class="row">
+        <div class="col">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</main>
+
+<script>
+    function copyAppLink() {
+        var copyText = document.getElementById("appLink");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        document.execCommand("copy");
+        document.getElementById("appButton").classList.add("btn-success");
+    }
+
+    function copyGuestLink() {
+        var copyText = document.getElementById("guestLink");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        document.execCommand("copy");
+        document.getElementById("guestButton").classList.add("btn-success");
+    }
+</script>
+</body>
+</html>

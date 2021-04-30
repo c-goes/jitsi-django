@@ -1,0 +1,28 @@
+
+
+
+{% extends "meet_app/base.html" %}
+
+{% block extra_head %}
+    <meta http-equiv="refresh" content="5">
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <a href="/accounts/logout/">Logout ({{ user.get_username }})</a>
+    {% endif %}
+
+
+    <h2>Warteraum: Dieses Konferenz existiert (noch) nicht</h2>
+
+    Sie werden automatisch weitergeleitet, sobald ein Organisator die Konferenz <strong>{{ name }}</strong> erstellt.
+
+
+
+
+    {% if request.user.is_staff or request.user.is_superuser %}
+
+
+    {% endif %}
+
+{% endblock %}
