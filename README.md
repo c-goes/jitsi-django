@@ -1,6 +1,6 @@
 # Combine Django Authentication with Jitsi Meet
 
-Use all the possibilites of Django authentication with Jitsi Meet.
+Use all the possibilites of Django authentication with Jitsi Meet JWT authentication.
 
 This example project uses LDAP to generate tokens to prevent anonymous "zoombombing" in school meetings. The code differentiates between teacher and pupils.
 
