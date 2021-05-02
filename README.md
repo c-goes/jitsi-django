@@ -6,8 +6,14 @@ This example project uses LDAP to generate tokens to prevent anonymous "zoombomb
 
 ## Integration
 
-
 This Ansible code documents how to integrate with a Jitsi Meet server
+
+### Configuration of Jitsi Meet
+
+https://github.com/c-goes/ansible-role-jitsi-meet-focal/blob/master/tasks/auth_jwt.yml
+
+### Configuration of the Django project
+
 
 ```yaml
 - name: Configure Django JWT_APPID
@@ -136,4 +142,5 @@ This Ansible code documents how to integrate with a Jitsi Meet server
 
 # License
 
-3-clause BSD
+SPDX-License-Identifier: BSD-3-Clause
+
